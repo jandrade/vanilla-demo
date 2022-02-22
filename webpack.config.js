@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const InjectBodyPlugin = require("inject-body-webpack-plugin").default;
 // const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
@@ -52,6 +53,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "App",
+    }),
+    new InjectBodyPlugin({
+      content: "<div id=root></div>",
     }),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     new VanillaExtractPlugin({
